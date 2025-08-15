@@ -1,0 +1,59 @@
+.bgblur {
+  width: 100svw;
+  height: 100dvh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3333337d;
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  width: 470px;
+  height: 340px;
+  background-color: #fff;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal img {
+  width: 96px;
+  height: 96px;
+  margin-top: 45px;
+  margin-bottom: 60px;
+}
+
+.modal p {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #282828;
+}
+
+.btncontainer {
+  display: flex;
+  column-gap: 10px;
+}
+
+.btncontainer button {
+  width: 160px;
+  height: 42px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f43f5e;
+  font-family: Vazirmatn;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
