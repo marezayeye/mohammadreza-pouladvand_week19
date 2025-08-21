@@ -51,14 +51,14 @@ h1 {
   text-align: right;
   color: #282828;
 }
-.inputs {
+.hookForm {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
   margin-top: 30px;
+  row-gap: 10px;
 }
 
-.inputs input {
+.inputs {
   background-color: #f2f2f2;
   width: 400px;
   height: 53px;
@@ -73,9 +73,10 @@ h1 {
   letter-spacing: 0%;
   text-align: right;
   padding: 25px;
+  margin-bottom: 0px;
 }
 
-button {
+.submitBtn {
   width: 400px;
   height: 53px;
   background-color: #55a3f0;
@@ -92,7 +93,6 @@ button {
   letter-spacing: 0%;
   text-align: center;
   margin-bottom: 20px;
-  margin-top: 30px;
 }
 
 a {
@@ -105,4 +105,11 @@ a {
   letter-spacing: 0%;
   text-align: right;
   color: #3a8bed;
+}
+
+.errorSpan {
+  min-height: 8px;
+  line-height: 8px;
+  color: red;
+  margin-right: 10px;
 }
