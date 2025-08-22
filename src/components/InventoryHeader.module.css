@@ -9,6 +9,7 @@
   left: 0;
   border: 1px solid #e4e4e4;
   border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 }
 
 .header div {
@@ -48,7 +49,7 @@
   border: none;
   cursor: pointer;
   margin-right: 10px;
-  transition: 0.4s all ease;
+  transition: 0.4s all ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -21,6 +21,7 @@
   background-color: #fff;
   color: #8d8d8d80;
   cursor: pointer;
+  transition: 0.4s all ease-in-out;
 }
 
 .pagination input {
@@ -30,4 +31,12 @@
   border-radius: 8px;
   height: 32px;
   padding: 8px;
+}
+
+@media (hover: hover) {
+  .pagination button:hover {
+    opacity: 0.7;
+    background-color: #55a3f0;
+    color: #fff;
+  }
 }

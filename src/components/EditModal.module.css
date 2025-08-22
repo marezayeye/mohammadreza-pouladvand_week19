@@ -88,7 +88,7 @@
   cursor: pointer;
 }
 
-.btncontainer button:first-of-type {
+.btncontainer button:first-of-type:hover {
   background-color: #55a3f0;
   color: #fff;
 }
