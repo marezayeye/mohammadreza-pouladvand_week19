@@ -1,5 +1,6 @@
-import styles from "./DeleteModal.module.css";
 import { ClipLoader } from "react-spinners";
+
+import styles from "./DeleteModal.module.css";
 
 function DeleteModal({ onConfirm, onCancel, isDeleting }) {
   return (

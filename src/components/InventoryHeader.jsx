@@ -1,13 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import styles from "./InventoryHeader.module.css";
 
-function InventoryHeader({ onSearch }) {
+function InventoryHeader({ searchQuery, setSearchQuery, setSearchParams }) {
   const currentUser = localStorage.getItem("currentUser");
   const navigate = useNavigate();
   const changeHandler = (event) => {
-    onSearch && onSearch(event.target.value);
+    setSearchQuery(event.target.value);
+    setSearchParams({
+      page: 1,
+      search: event.target.value,
+    });
   };
 
   const logoutHandler = () => {
@@ -27,6 +31,7 @@ function InventoryHeader({ onSearch }) {
             type="text"
             placeholder="جستجوی کالا"
             onChange={changeHandler}
+            value={searchQuery}
           />
         </div>
         <div className={styles.userNameSection}>

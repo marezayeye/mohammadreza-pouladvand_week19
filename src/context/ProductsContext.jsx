@@ -1,6 +1,6 @@
 // ProductsContext.js
 import { createContext, useReducer, useContext, useEffect } from "react";
-import axios from "axios";
+
 import { api } from "../services/httpRequests";
 import { useSearchParams } from "react-router-dom";
 
@@ -62,7 +62,7 @@ export function ProductsProvider({ children }) {
 
   const page = parseInt(searchParams.get("page") || 1);
   const limit = parseInt(searchParams.get("limit") || 10);
-  const search = searchParams.get("search") || "";
+  const search = searchParams.get("search") || null;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -77,7 +77,7 @@ export function ProductsProvider({ children }) {
       }
     };
     fetchProducts();
-  }, [page, limit, search]);
+  }, [page, limit]);
 
   const addProduct = async (newProduct) => {
     const res = await api.post("/products", newProduct);

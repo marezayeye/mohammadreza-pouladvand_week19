@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 
 import { useProducts } from "../context/ProductsContext";
-import { useAuth } from "../context/UserContext";
 
 import InventoryHeader from "../components/InventoryHeader";
 import InventoryTableRow from "../components/InventoryTableRow";
@@ -13,7 +12,6 @@ import InventoryPagination from "../components/InventoryPagination";
 import styles from "./Inventory.module.css";
 
 function Inventory() {
-  const { userName, logout } = useAuth(); //getting username to be shown on header
   const {
     products,
     loading,
@@ -21,8 +19,6 @@ function Inventory() {
     addProduct,
     updateProduct,
     deleteProduct,
-    totalPages,
-    page,
     limit,
     setSearchParams,
   } = useProducts();
@@ -33,7 +29,28 @@ function Inventory() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
+  let filteredProducts;
+  if (!searchQuery) {
+    filteredProducts = [...products]; // if searchbox is empty then show all items
+  } else {
+    filteredProducts = products.filter(
+      (
+        prod // and if its not, filter items
+      ) => prod.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+  useEffect(() => {
+    if (!!searchQuery.length) {
+      filteredProducts = [...products];
+    }
+    if (searchQuery.length > 2) {
+      filteredProducts = products.filter((prod) =>
+        prod.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+  }, [searchQuery]); //on changing searchquery re-run the filter
   const handleRequestDelete = (id) => {
     setProductIdToDelete(id);
   };
@@ -97,13 +114,9 @@ function Inventory() {
   return (
     <div className={styles.container}>
       <InventoryHeader
-        onSearch={(value) =>
-          setSearchParams({
-            page: 1,
-            limit: String(limit || 10),
-            search: value,
-          })
-        }
+        setSearchParams={setSearchParams}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
       <div className={styles.secondRow}>
         <div>
@@ -131,18 +144,20 @@ function Inventory() {
             </tr>
           </thead>
           <tbody>
-            {products.map((prod) => (
-              <InventoryTableRow
-                key={prod.id ?? prod._id ?? prod.sku}
-                data={prod}
-                onDelete={() =>
-                  handleRequestDelete(prod.id ?? prod._id ?? prod.sku)
-                }
-                onEdit={() => handleRequestEdit(prod)}
-                isDeleting={isDeleting}
-                isEditing={isEditing}
-              />
-            ))}
+            {filteredProducts.map(
+              (
+                prod // mapping on filtered products to respect search query
+              ) => (
+                <InventoryTableRow
+                  key={prod.id}
+                  data={prod}
+                  onDelete={() => handleRequestDelete(prod.id)}
+                  onEdit={() => handleRequestEdit(prod)}
+                  isDeleting={isDeleting}
+                  isEditing={isEditing}
+                />
+              )
+            )}
           </tbody>
         </table>
       </div>
