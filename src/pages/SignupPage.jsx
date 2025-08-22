@@ -1,13 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { authLogin } from "../services/httpRequests";
 import { RegisterValidationSchema } from "../schema/loginForm";
+import { registerURL, authRequest } from "../services/httpRequests";
 
 import styles from "./SignupPage.module.css";
 
 function SignUpPage() {
+  const navigate = useNavigate();
+
+  const registerNewUser = async (data) => {
+    try {
+      const response = await authRequest(registerURL, data);
+      if (response.status === 201) {
+        const token = response.data.token;
+        localStorage.setItem("jwtToken", token);
+        alert("ثبت نام با موفقیت انجام شد");
+        setTimeout(() => {
+          navigate("/inventory");
+        }, 1000);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        alert(`کاربر با مشخصات فوق وجود دارد. لطفاً وارد شوید`);
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else {
+        alert("خطا در ثبت نام", error.message);
+      }
+    }
+  };
+
   const {
     register,
     handleSubmit,
@@ -15,7 +40,13 @@ function SignUpPage() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(RegisterValidationSchema) });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const userCredentials = {
+      username: data.userName,
+      password: data.password,
+    };
+    registerNewUser(userCredentials);
+  };
 
   return (
     <>
@@ -63,9 +94,8 @@ function SignUpPage() {
 
             <input type="submit" value="ثبت نام" className={styles.submitBtn} />
           </form>
-          <a href="http://" target="_blank" rel="noopener noreferrer">
-            حساب کاربری دارید؟
-          </a>
+
+          <Link to="/login"> حساب کاربری دارید؟</Link>
         </div>
       </div>
     </>
