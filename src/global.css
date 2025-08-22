@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-root {
+body {
   width: 1200px;
   margin: auto;
 }
