@@ -4,6 +4,7 @@ import SignUpPage from "./pages/SignupPage.jsx";
 import Inventory from "./pages/Inventory";
 import LoginPage from "./pages/LoginPage.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
+import SecureRoute from "./components/SecureRoute.jsx";
 
 function App() {
   return (
@@ -11,7 +12,15 @@ function App() {
       <Route index element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/inventory" element={<Inventory />} />
+      // protects Inventory form unauthorized access
+      <Route
+        path="/inventory"
+        element={
+          <SecureRoute>
+            <Inventory />
+          </SecureRoute>
+        }
+      />
       <Route path="/*" element={<PageNotFound />} />
     </Routes>
   );
