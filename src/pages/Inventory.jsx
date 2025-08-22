@@ -15,6 +15,8 @@ function Inventory() {
     products,
     loading,
     error,
+    addProduct,
+    updateProduct,
     deleteProduct,
     totalPages,
     page,
@@ -23,6 +25,7 @@ function Inventory() {
 
   const [productIdToDelete, setProductIdToDelete] = useState(null);
   const [productToEdit, setProductToEdit] = useState(null);
+  const [isAddOpen, setIsAddOpen] = useState(false);
 
   const handleRequestDelete = (id) => {
     setProductIdToDelete(id);
@@ -44,6 +47,13 @@ function Inventory() {
   };
   const handleCancelEdit = () => setProductToEdit(null);
 
+  const handleOpenAdd = () => setIsAddOpen(true);
+  const handleConfirmAdd = async (payload) => {
+    await addProduct(payload);
+    setIsAddOpen(false);
+  };
+  const handleCancelAdd = () => setIsAddOpen(false);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -55,7 +65,7 @@ function Inventory() {
           <img src="src\assets\settings.webp" alt="settings" />
           <h3>مدیریت کالا</h3>
         </div>
-        <button className={styles.addButton} >افزودن محصول</button>
+        <button className={styles.addButton} onClick={handleOpenAdd}>افزودن محصول</button>
       </div>
 
       <div className={styles.table}>
@@ -93,6 +103,14 @@ function Inventory() {
           }}
           onConfirm={handleConfirmEdit}
           onCancel={handleCancelEdit}
+        />
+      )}
+      {isAddOpen && (
+        <EditModal
+          title="افزودن محصول"
+          initialValues={{ name: "", quantity: 0, price: 0 }}
+          onConfirm={handleConfirmAdd}
+          onCancel={handleCancelAdd}
         />
       )}
     </div>

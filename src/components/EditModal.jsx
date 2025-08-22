@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./EditModal.module.css";
 
-function EditModal({ initialValues, onConfirm, onCancel }) {
+function EditModal({ initialValues, onConfirm, onCancel, title = "ویرایش محصول" }) {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
@@ -22,7 +22,7 @@ function EditModal({ initialValues, onConfirm, onCancel }) {
   return (
     <div className={styles.bgblur}>
       <div className={styles.modal}>
-        <h3>ویرایش محصول</h3>
+        <h3>{title}</h3>
         <form onSubmit={handleSubmit} className={styles.form}>
           <label>
             نام کالا
