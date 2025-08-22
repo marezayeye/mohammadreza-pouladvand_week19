@@ -31,7 +31,6 @@
 .userNameSection {
   border-right: 1px solid #e4e4e4;
   padding: 10px;
-  width: 160px;
 }
 
 .profile {
@@ -42,4 +41,27 @@
 .userNameSection div {
   display: flex;
   flex-direction: column;
+}
+
+.logout {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: 0.4s all ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout img {
+  width: 46px !important;
+  height: 46px !important;
+}
+
+@media (hover: hover) {
+  .logout:hover {
+    transform: rotateY(180deg);
+    opacity: 0.5;
+  }
 }

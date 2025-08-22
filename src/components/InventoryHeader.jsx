@@ -1,11 +1,21 @@
-import { useAuth } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 import styles from "./InventoryHeader.module.css";
 
 function InventoryHeader({ onSearch }) {
   const currentUser = localStorage.getItem("currentUser");
-  const changeHandler = (e) => {
-    onSearch && onSearch(e.target.value);
+  const navigate = useNavigate();
+  const changeHandler = (event) => {
+    onSearch && onSearch(event.target.value);
+  };
+
+  const logoutHandler = () => {
+    toast("شما با موفقیت از حساب خود خارج شدید.");
+    setTimeout(() => {
+      localStorage.clear();
+      navigate("/login");
+    }, 2000);
   };
 
   return (
@@ -29,8 +39,20 @@ function InventoryHeader({ onSearch }) {
             <p>{currentUser}</p>
             <p>مدیر</p>
           </div>
+          <button onClick={logoutHandler} className={styles.logout}>
+            <img src="src\assets\logout.png" alt="logout" />
+          </button>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={true}
+        theme="light"
+      />
     </>
   );
 }

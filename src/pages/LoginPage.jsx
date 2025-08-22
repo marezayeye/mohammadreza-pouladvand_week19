@@ -27,14 +27,14 @@ function LoginPage() {
         localStorage.setItem("currentUser", currentUser);
         setTimeout(() => {
           navigate("/inventory");
-        }, 5000);
+        }, 2000);
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
         notify(loginFailed);
         setTimeout(() => {
           navigate("/login");
-        }, 5000);
+        }, 2000);
       }
     }
   };
@@ -93,7 +93,7 @@ function LoginPage() {
       </div>
       <ToastContainer
         position="bottom-center"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick={false}
