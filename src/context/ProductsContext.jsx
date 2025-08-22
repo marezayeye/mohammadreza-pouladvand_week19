@@ -1,8 +1,7 @@
-// ProductsContext.js
 import { createContext, useReducer, useContext, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { api } from "../services/httpRequests";
-import { useSearchParams } from "react-router-dom";
 
 const ProductsContext = createContext();
 

@@ -20,6 +20,7 @@ function Inventory() {
     updateProduct,
     deleteProduct,
     limit,
+    searchParams,
     setSearchParams,
   } = useProducts();
 
@@ -115,6 +116,7 @@ function Inventory() {
     <div className={styles.container}>
       <InventoryHeader
         setSearchParams={setSearchParams}
+        searchParams={searchParams}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
