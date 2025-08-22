@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ToastContainer, toast } from "react-toastify";
 
 import { RegisterValidationSchema } from "../schema/loginForm";
 import { registerURL, authRequest } from "../services/httpRequests";
@@ -14,19 +15,24 @@ function SignUpPage() {
     try {
       const response = await authRequest(registerURL, data);
       if (response.status === 201) {
-        const token = response.data.token;
-        localStorage.setItem("jwtToken", token);
-        alert("ثبت نام با موفقیت انجام شد");
+        const notify = () =>
+          toast(
+            "ثبت نام با موفقیت انجام شد. با نام کاربری و رمز عبور خود وارد شوید"
+          );
+        notify();
+
         setTimeout(() => {
-          navigate("/inventory");
-        }, 1000);
+          navigate("/login");
+        }, 5000);
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        alert(`کاربر با مشخصات فوق وجود دارد. لطفاً وارد شوید`);
+        const notify = () =>
+          toast("کاربر با مشخصات فوق از قبل وجود دارد. لطفاً وارد شوید");
+        notify();
         setTimeout(() => {
           navigate("/login");
-        }, 1000);
+        }, 5000);
       } else {
         alert("خطا در ثبت نام", error.message);
       }
@@ -97,6 +103,15 @@ function SignUpPage() {
 
           <Link to="/login"> حساب کاربری دارید؟</Link>
         </div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={true}
+          theme="light"
+        />
       </div>
     </>
   );
