@@ -1,0 +1,23 @@
+@font-face {
+  font-family: VazirmatnFD;
+  src: url("../fonts/Vazirmatn-FD-Regular.woff2") format("woff2");
+}
+
+.row {
+  height: 56px;
+  text-align: center;
+}
+
+.row td {
+  font-family: VazirmatnFD;
+  border-bottom: 1px solid #e2e2e26b;
+}
+
+.row td button {
+  background-color: #fff;
+  border: none;
+  width: 20px;
+  height: 20px;
+  margin: 8px;
+  cursor: pointer;
+}

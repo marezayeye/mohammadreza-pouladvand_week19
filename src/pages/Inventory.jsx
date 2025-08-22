@@ -97,8 +97,6 @@ function Inventory() {
   return (
     <div className={styles.container}>
       <InventoryHeader
-        userName={userName}
-        logout={logout}
         onSearch={(value) =>
           setSearchParams({
             page: 1,

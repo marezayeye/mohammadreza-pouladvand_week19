@@ -1,0 +1,94 @@
+.bgblur {
+  width: 100svw;
+  height: 100dvh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3333337d;
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  width: 470px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.moadal h3 {
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: right;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputLable {
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: right;
+  margin: 10px;
+}
+
+.modal form input {
+  width: 389px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  background-color: #f2f2f2;
+  font-family: Vazirmatn;
+  font-weight: 300;
+  font-style: Light;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: right;
+  color: #8d8d8d;
+}
+.btncontainer {
+  display: flex;
+  column-gap: 10px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.btncontainer button {
+  width: 160px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  color: #282828cc;
+  font-family: Vazirmatn;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  transition: 0.2s all ease;
+  cursor: pointer;
+}
+
+.btncontainer button:first-of-type {
+  background-color: #55a3f0;
+  color: #fff;
+}

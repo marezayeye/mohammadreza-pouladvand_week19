@@ -11,7 +11,9 @@ function DeleteModal({ onConfirm, onCancel, isDeleting }) {
           <button onClick={onConfirm} disabled={isDeleting}>
             {isDeleting ? <ClipLoader color="#ffffff" size={16} /> : "حذف"}
           </button>
-          <button onClick={onCancel} disabled={isDeleting}>لغو</button>
+          <button onClick={onCancel} disabled={isDeleting}>
+            لغو
+          </button>
         </div>
       </div>
     </div>

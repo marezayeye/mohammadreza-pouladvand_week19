@@ -1,14 +1,14 @@
 .container {
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
 }
 
 .secondRow {
   display: flex;
-  margin-top: 120px;
+  margin-top: 32px;
+  margin-bottom: 16px;
   justify-content: space-between;
-  width: 100%;
+  width: 1140px;
 }
 
 .secondRow h3 {
@@ -22,6 +22,7 @@
 
 .secondRow div {
   display: flex;
+  margin: 10px;
 }
 
 .secondRow div img {
@@ -30,22 +31,21 @@
   margin-left: 20px;
 }
 
-.addButton{
+.addButton {
   width: 132px;
   height: 45px;
   border: none;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px;
   background-color: #55a3f0;
   color: #fff;
-  font-family: Vazirmatn;
   font-weight: 400;
   font-style: Regular;
   font-size: 16px;
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
+  cursor: pointer;
 }
 
 table {
@@ -54,15 +54,11 @@ table {
   border-radius: 30px;
   width: 1140px;
 }
-.tableHeader {
+.tableHeader th {
   background-color: #f2f2f2;
-  border-radius: 30px;
   height: 70px;
   padding: 25px;
   border: none;
-}
-
-.tableHeader th {
   font-family: Vazirmatn;
   font-weight: 500;
   font-style: Medium;
@@ -71,5 +67,11 @@ table {
   letter-spacing: 0%;
   text-align: center;
   border: none;
-  border-radius: 30px;
+}
+
+.tableHeader th:first-of-type {
+  border-top-right-radius: 30px;
+}
+.tableHeader th:last-of-type {
+  border-top-left-radius: 30px;
 }

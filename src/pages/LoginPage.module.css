@@ -93,6 +93,13 @@ h1 {
   letter-spacing: 0%;
   text-align: center;
   margin-bottom: 20px;
+  transition: 0.2s all ease;
+}
+
+@media (hover: hover) {
+  .submitBtn:hover {
+    
+  }
 }
 
 a {

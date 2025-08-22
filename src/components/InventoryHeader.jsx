@@ -1,21 +1,14 @@
-import { useState } from "react";
-
 import { useAuth } from "../context/UserContext";
 
 import styles from "./InventoryHeader.module.css";
 
 function InventoryHeader({ onSearch }) {
-  const [search, setSearch] = useState("");
   const { userName, logout } = useAuth();
-
+  console.log(userName);
   const changeHandler = (e) => {
-    setSearch(e.target.value);
     onSearch && onSearch(e.target.value);
   };
 
-  const searchHandler = () => {
-    
-  };
   return (
     <>
       <div className={styles.header}>
@@ -28,7 +21,11 @@ function InventoryHeader({ onSearch }) {
           />
         </div>
         <div className={styles.userNameSection}>
-          <img src="../../src/assets/profile.webp" alt="profile-photo" />
+          <img
+            className={styles.profile}
+            src="../../src/assets/profile.webp"
+            alt="profile-photo"
+          />
           <div>
             <p>{userName}</p>
             <p>مدیر</p>

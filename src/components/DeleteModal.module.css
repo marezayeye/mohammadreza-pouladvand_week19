@@ -13,7 +13,7 @@
 
 .modal {
   width: 470px;
-  height: 340px;
+  padding-bottom: 40px;
   background-color: #fff;
   border-radius: 30px;
   display: flex;
@@ -25,7 +25,7 @@
   width: 96px;
   height: 96px;
   margin-top: 45px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .modal p {
@@ -42,13 +42,16 @@
 .btncontainer {
   display: flex;
   column-gap: 10px;
+  margin-top: 16px;
 }
 
 .btncontainer button {
   width: 160px;
   height: 42px;
+  border: none;
   border-radius: 10px;
   padding: 10px;
+  color: #fff;
   background-color: #f43f5e;
   font-family: Vazirmatn;
   font-weight: 600;
@@ -56,4 +59,5 @@
   font-size: 16px;
   line-height: 100%;
   letter-spacing: 0%;
+  cursor: pointer;
 }

@@ -1,0 +1,33 @@
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: auto;
+  margin-top: 16px;
+  margin-bottom: 64px;
+}
+
+.pagination button {
+  width: 35px;
+  height: 35px;
+  border-radius: 42px;
+  border: 2px solid #8d8d8d80;
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  background-color: #fff;
+  color: #8d8d8d80;
+  cursor: pointer;
+}
+
+.pagination input {
+  border: none;
+  background-color: #8d8d8d80;
+  color: #555;
+  border-radius: 8px;
+  height: 32px;
+  padding: 8px;
+}

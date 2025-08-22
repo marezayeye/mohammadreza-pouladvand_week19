@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { useProducts } from "../context/ProductsContext";
 import { ClipLoader } from "react-spinners";
+
+import { useProducts } from "../context/ProductsContext";
+
+import styles from "./InventoryPagination.module.css";
 
 function InventoryPagination() {
   const { page, totalPages, limit, setSearchParams } = useProducts();
@@ -22,7 +25,7 @@ function InventoryPagination() {
     setLocalLimit(value);
     setIsChanging(true);
     try {
-      // Reset to first page when limit changes
+      // go to first page whehn limit is changed
       setSearchParams({ page: "1", limit: String(value) });
     } finally {
       setIsChanging(false);
@@ -36,14 +39,18 @@ function InventoryPagination() {
   };
 
   return (
-    <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 16 }}>
+    <div className={styles.pagination}>
       {isChanging && <ClipLoader color="#36d7b7" size={20} />}
       {Array.from({ length: totalPages || 1 }, (_, i) => i + 1).map((p) => (
         <button
           key={p}
           onClick={() => goToPage(p)}
           disabled={p === page || isChanging}
-          style={p === page ? { fontWeight: 700 } : undefined}
+          style={
+            p === page
+              ? { backgroundColor: "#55A3F0", color: "#fff" }
+              : undefined
+          }
         >
           {p}
         </button>
@@ -68,4 +75,3 @@ function InventoryPagination() {
 }
 
 export default InventoryPagination;
-
