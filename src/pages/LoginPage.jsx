@@ -23,6 +23,8 @@ function LoginPage() {
         const token = response.data.token;
         localStorage.setItem("jwtToken", token);
         notify(loginSuccess);
+        const currentUser = data.username;
+        localStorage.setItem("currentUser", currentUser);
         setTimeout(() => {
           navigate("/inventory");
         }, 5000);

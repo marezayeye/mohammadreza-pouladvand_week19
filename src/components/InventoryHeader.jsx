@@ -3,8 +3,7 @@ import { useAuth } from "../context/UserContext";
 import styles from "./InventoryHeader.module.css";
 
 function InventoryHeader({ onSearch }) {
-  const { userName, logout } = useAuth();
-  console.log(userName);
+  const currentUser = localStorage.getItem("currentUser");
   const changeHandler = (e) => {
     onSearch && onSearch(e.target.value);
   };
@@ -27,7 +26,7 @@ function InventoryHeader({ onSearch }) {
             alt="profile-photo"
           />
           <div>
-            <p>{userName}</p>
+            <p>{currentUser}</p>
             <p>مدیر</p>
           </div>
         </div>
