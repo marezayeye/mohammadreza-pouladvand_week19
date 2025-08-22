@@ -1,20 +1,32 @@
 import { useState } from "react";
 import { useProducts } from "../context/ProductsContext";
+import { ClipLoader } from "react-spinners";
 
 function InventoryPagination() {
   const { page, totalPages, limit, setSearchParams } = useProducts();
   const [localLimit, setLocalLimit] = useState(limit || 10);
+  const [isChanging, setIsChanging] = useState(false);
 
-  const goToPage = (nextPage) => {
+  const goToPage = async (nextPage) => {
     const safePage = Math.max(1, Math.min(totalPages || 1, Number(nextPage)));
-    setSearchParams({ page: String(safePage), limit: String(localLimit) });
+    setIsChanging(true);
+    try {
+      setSearchParams({ page: String(safePage), limit: String(localLimit) });
+    } finally {
+      setIsChanging(false);
+    }
   };
 
-  const applyLimit = (nextLimit) => {
+  const applyLimit = async (nextLimit) => {
     const value = Math.max(1, Number(nextLimit) || 1);
     setLocalLimit(value);
-    // Reset to first page when limit changes
-    setSearchParams({ page: "1", limit: String(value) });
+    setIsChanging(true);
+    try {
+      // Reset to first page when limit changes
+      setSearchParams({ page: "1", limit: String(value) });
+    } finally {
+      setIsChanging(false);
+    }
   };
 
   const handleLimitKeyDown = (e) => {
@@ -25,11 +37,12 @@ function InventoryPagination() {
 
   return (
     <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 16 }}>
+      {isChanging && <ClipLoader color="#36d7b7" size={20} />}
       {Array.from({ length: totalPages || 1 }, (_, i) => i + 1).map((p) => (
         <button
           key={p}
           onClick={() => goToPage(p)}
-          disabled={p === page}
+          disabled={p === page || isChanging}
           style={p === page ? { fontWeight: 700 } : undefined}
         >
           {p}
@@ -46,6 +59,7 @@ function InventoryPagination() {
             onBlur={(e) => applyLimit(e.target.value)}
             onKeyDown={handleLimitKeyDown}
             style={{ marginInlineStart: 8, width: 80 }}
+            disabled={isChanging}
           />
         </label>
       </div>

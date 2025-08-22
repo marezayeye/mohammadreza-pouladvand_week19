@@ -1,4 +1,6 @@
-function InventoryTableRow({ data, onDelete, onEdit }) {
+import { ClipLoader } from "react-spinners";
+
+function InventoryTableRow({ data, onDelete, onEdit, isDeleting, isEditing }) {
   const { id, name, quantity, price } = data || {};
   return (
     <tr>
@@ -7,11 +9,11 @@ function InventoryTableRow({ data, onDelete, onEdit }) {
       <td>{price}</td>
       <td>{id}</td>
       <td>
-        <button onClick={onEdit}>
-          <img src="../../assets/edit.webp" alt="edit" />
+        <button onClick={onEdit} disabled={isEditing || isDeleting}>
+          {isEditing ? <ClipLoader color="#000000" size={16} /> : <img src="../../assets/edit.webp" alt="edit" />}
         </button>
-        <button onClick={onDelete}>
-          <img src="../../assets/trash.webp" alt="delete" />
+        <button onClick={onDelete} disabled={isEditing || isDeleting}>
+          {isDeleting ? <ClipLoader color="#000000" size={16} /> : <img src="../../assets/trash.webp" alt="delete" />}
         </button>
       </td>
     </tr>

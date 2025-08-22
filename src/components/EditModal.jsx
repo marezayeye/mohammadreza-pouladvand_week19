@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import styles from "./EditModal.module.css";
+import { ClipLoader } from "react-spinners";
 
-function EditModal({ initialValues, onConfirm, onCancel, title = "ویرایش محصول" }) {
+function EditModal({ initialValues, onConfirm, onCancel, title = "ویرایش محصول", isEditing }) {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
@@ -31,6 +32,7 @@ function EditModal({ initialValues, onConfirm, onCancel, title = "ویرایش �
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              disabled={isEditing}
             />
           </label>
           <label>
@@ -41,6 +43,7 @@ function EditModal({ initialValues, onConfirm, onCancel, title = "ویرایش �
               onChange={(e) => setQuantity(e.target.value)}
               min={0}
               required
+              disabled={isEditing}
             />
           </label>
           <label>
@@ -51,11 +54,14 @@ function EditModal({ initialValues, onConfirm, onCancel, title = "ویرایش �
               onChange={(e) => setPrice(e.target.value)}
               min={0}
               required
+              disabled={isEditing}
             />
           </label>
           <div className={styles.btncontainer}>
-            <button type="submit">ذخیره</button>
-            <button type="button" onClick={onCancel}>انصراف</button>
+            <button type="submit" disabled={isEditing}>
+              {isEditing ? <ClipLoader color="#ffffff" size={16} /> : "ذخیره"}
+            </button>
+            <button type="button" onClick={onCancel} disabled={isEditing}>انصراف</button>
           </div>
         </form>
       </div>
