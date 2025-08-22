@@ -5,21 +5,20 @@ import { ToastContainer, toast } from "react-toastify";
 
 import { RegisterValidationSchema } from "../schema/loginForm";
 import { registerURL, authRequest } from "../services/httpRequests";
+import { registerToastTexts } from "../constants/toastMessages";
 
 import styles from "./SignupPage.module.css";
 
 function SignUpPage() {
+  const notify = (text) => toast(text);
   const navigate = useNavigate();
-
+  const { registerSuccess, registerUserExists, registerFailed } =
+    registerToastTexts;
   const registerNewUser = async (data) => {
     try {
       const response = await authRequest(registerURL, data);
       if (response.status === 201) {
-        const notify = () =>
-          toast(
-            "ثبت نام با موفقیت انجام شد. با نام کاربری و رمز عبور خود وارد شوید"
-          );
-        notify();
+        notify(registerSuccess);
 
         setTimeout(() => {
           navigate("/login");
@@ -27,14 +26,12 @@ function SignUpPage() {
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        const notify = () =>
-          toast("کاربر با مشخصات فوق از قبل وجود دارد. لطفاً وارد شوید");
-        notify();
+        notify(registerUserExists);
         setTimeout(() => {
           navigate("/login");
         }, 5000);
       } else {
-        alert("خطا در ثبت نام", error.message);
+        notify(registerFailed);
       }
     }
   };
