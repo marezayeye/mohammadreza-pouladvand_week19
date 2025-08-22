@@ -2,6 +2,7 @@ import InventoryHeader from "../components/InventoryHeader";
 import InventoryTableRow from "../components/InventoryTableRow";
 import DeleteModal from "../components/DeleteModal";
 import EditModal from "../components/EditModal";
+import InventoryPagination from "../components/InventoryPagination";
 
 import { useAuth } from "../context/UserContext";
 import { useProducts } from "../context/ProductsContext";
@@ -20,6 +21,7 @@ function Inventory() {
     deleteProduct,
     totalPages,
     page,
+    limit,
     setSearchParams,
   } = useProducts();
 
@@ -59,7 +61,11 @@ function Inventory() {
 
   return (
     <div className={styles.container}>
-      <InventoryHeader userName={userName} logout={logout} />
+      <InventoryHeader
+        userName={userName}
+        logout={logout}
+        onSearch={(value) => setSearchParams({ page: 1, limit: String(limit || 10), search: value })}
+      />
       <div className={styles.secondRow}>
         <div>
           <img src="src\assets\settings.webp" alt="settings" />
@@ -91,6 +97,7 @@ function Inventory() {
           </tbody>
         </table>
       </div>
+      <InventoryPagination />
       {productIdToDelete && (
         <DeleteModal onConfirm={handleConfirmDelete} onCancel={handleCancelDelete} />
       )}

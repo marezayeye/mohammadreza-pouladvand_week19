@@ -4,13 +4,13 @@ import { useAuth } from "../context/UserContext";
 
 import styles from "./InventoryHeader.module.css";
 
-function InventoryHeader() {
+function InventoryHeader({ onSearch }) {
   const [search, setSearch] = useState("");
   const { userName, logout } = useAuth();
 
   const changeHandler = (e) => {
     setSearch(e.target.value);
-    setSearchParams({ page: 1, search: e.target.value });
+    onSearch && onSearch(e.target.value);
   };
 
   const searchHandler = () => {
