@@ -1,4 +1,5 @@
-function InventoryTableRow() {
+function InventoryTableRow({ data, onDelete, onEdit }) {
+  const { id, name, quantity, price } = data || {};
   return (
     <tr>
       <td>{name}</td>
@@ -6,10 +7,10 @@ function InventoryTableRow() {
       <td>{price}</td>
       <td>{id}</td>
       <td>
-        <button>
+        <button onClick={onEdit}>
           <img src="../../assets/edit.webp" alt="edit" />
         </button>
-        <button>
+        <button onClick={onDelete}>
           <img src="../../assets/trash.webp" alt="delete" />
         </button>
       </td>

@@ -10,10 +10,11 @@ function InventoryHeader() {
 
   const changeHandler = (e) => {
     setSearch(e.target.value);
+    setSearchParams({ page: 1, search: e.target.value });
   };
 
   const searchHandler = () => {
-    console.log(search);
+    
   };
   return (
     <>
