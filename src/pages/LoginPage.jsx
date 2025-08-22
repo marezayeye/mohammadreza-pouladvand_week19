@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 
+import { useAuth } from "../context/UserContext";
+
 import { loginValidationSchema } from "../schema/loginForm";
 import { loginURL, authRequest } from "../services/httpRequests";
 import { loginToastTexts } from "../constants/toastMessages";
@@ -10,6 +12,7 @@ import { loginToastTexts } from "../constants/toastMessages";
 import styles from "./LoginPage.module.css";
 
 function LoginPage() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const notify = (text) => toast(text);
   const { loginSuccess, loginFailed } = loginToastTexts;
@@ -21,7 +24,7 @@ function LoginPage() {
         localStorage.setItem("jwtToken", token);
         notify(loginSuccess);
         setTimeout(() => {
-          navigate("/Inventory");
+          navigate("/inventory");
         }, 5000);
       }
     } catch (error) {
@@ -42,6 +45,8 @@ function LoginPage() {
   } = useForm({ resolver: yupResolver(loginValidationSchema) });
 
   const onSubmit = (data) => {
+    const userName = watch("userName");
+    login(userName);
     const userCredentials = {
       username: data.userName,
       password: data.password,

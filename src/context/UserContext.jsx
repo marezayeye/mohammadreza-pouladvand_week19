@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from "react";
+const UserContext = createContext();
 
 function UserProvider({ children }) {
-  const UserContext = createContext();
   const [userName, setUserName] = useState();
   const login = (username) => setUserName(username);
   const logout = () => setUserName();
